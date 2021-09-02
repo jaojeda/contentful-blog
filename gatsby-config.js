@@ -6,11 +6,15 @@
 
 module.exports = {
   /* Your site config here */
+  siteMetadata: {
+    title: `Contentful Blog`,
+    author: `Jose Ojeda`,
+  },
   plugins: [
     {
       resolve: `gatsby-plugin-sass`,
       options: {
-        implementation: require("node-sass"),
+        implementation: require(`node-sass`),
       },
     },
   ]
