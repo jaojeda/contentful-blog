@@ -14,6 +14,7 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
+    "@contentful/rich-text-types": "^15.1.0",
     "dotenv": "^10.0.0",
     "gatsby": "^3.12.1",
     "gatsby-plugin-sass": "^4.13.0",
