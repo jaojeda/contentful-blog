@@ -12,6 +12,7 @@ module.exports = {
     author: `Jose Ojeda`,
   },
   plugins: [
+    `gatsby-plugin-netlify`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-contentful`,
