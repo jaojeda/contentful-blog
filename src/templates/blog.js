@@ -5,17 +5,24 @@ import { BLOCKS, MARKS } from '@contentful/rich-text-types'
 import { renderRichText } from 'gatsby-source-contentful/rich-text'
 
 export const query = graphql`
-  query (
-    $slug: String!
-  ){
-    contentfulBlogPost(slug: {eq: $slug}) {
-      title
-      publishedDate(fromNow: true)
-      body {
-        raw
+query($slug: String!) {
+  contentfulBlogPost(slug: {eq: $slug}) {
+    body {
+      raw
+      references {
+        ... on ContentfulAsset {
+          contentful_id
+          __typename
+          gatsbyImageData
+        }
+        file {
+          url
+          contentType
+        }
       }
     }
   }
+}
 `
 
 const Bold = ({ children }) => <span className="bold">{children}</span>
@@ -27,15 +34,12 @@ const options = {
   },
   renderNode: {
     [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
-    [BLOCKS.EMBEDDED_ASSET]: node => {
-      return (
-        <>
-          <h2>Embedded Asset</h2>
-          <pre>
-            <code>{JSON.stringify(node, null, 2)}</code>
-          </pre>
-        </>
-      )
+    "embedded-asset-block": node => {
+      const { gatsbyImageData } = node.data.target
+      if (!gatsbyImageData){
+        return null
+      }
+      return <img src={node.data.target.file.url}/>
     },
   },
 }
