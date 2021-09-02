@@ -34,7 +34,6 @@
     "react-helmet": "^6.1.0"
   },
   "devDependencies": {
-    "@netlify/plugin-gatsby": "^1.0.3",
     "prettier": "2.3.2"
   },
   "repository": {
